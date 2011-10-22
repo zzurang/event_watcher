@@ -1,4 +1,4 @@
-== EventWatcher
+= EventWatcher
   http://github.com/zzurang/event_watcher
 
 == DESCRIPTION
