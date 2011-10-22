@@ -1,0 +1,44 @@
+= EventWatcher
+
+http://github.com/zzurang/event_watcher
+
+== DESCRIPTION:
+Flexible minitoring tool for logging method call and callback events
+
+== USAGE:
+class Subscriber < ActiveRecord::Base
+  after_create :foo
+end
+
+EventWatcher.setup do  
+  #watching a hook method
+  callback_watcher(:Subscriber, :after_create) do |klass, params, result|
+    puts <<-LOG
+      after_create hook has been called !
+    LOG
+  end
+
+  #watching a class method
+  method_call_watcher(:Subscriber, :create) do |object, params, result|    
+    puts <<-LOG
+      class method 'Subscriber.create' has been called
+    LOG    
+  end
+
+  #watching an instance method
+  method_call_watcher(:subscriber, :destroy) do |object, params, result|
+    puts <<-LOG
+      instance method 'destroy' has been called on a Subscriber object
+    LOG
+  end
+end
+
+subscriber = Subscriber.create :name => "foo"
+subscriber.destroy
+
+# OUTPUT
+#   after_create hook has been called !
+#   class method 'Subscriber.create' has been called
+#   instance method 'destroy' has been called on a Subscriber object
+
+== TIP:
