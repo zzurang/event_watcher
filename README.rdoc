@@ -12,23 +12,17 @@
   EventWatcher.setup do  
     #watching a hook method
     callback_watcher(:Subscriber, :after_create) do |created_resource|
-      puts <<-LOG
-        after_create hook has been called !
-      LOG
+      puts "after_create hook has been called !"
     end
 
     #watching a class method
     method_call_watcher(:Subscriber, :create) do |klass, params, result|    
-      puts <<-LOG
-        class method 'Subscriber.create' has been called
-      LOG    
+      puts "class method 'Subscriber.create' has been called"      
     end
 
     #watching an instance method
     method_call_watcher(:subscriber, :destroy) do |object, params, result|
-      puts <<-LOG
-        instance method 'destroy' has been called on a Subscriber object
-      LOG
+      puts "instance method 'destroy' has been called on a Subscriber object"
     end
   end
 
