@@ -34,6 +34,9 @@
   #   class method 'Subscriber.create' has been called
   #   instance method 'destroy' has been called on a Subscriber object
 
+== INSTALL
+  gem install event_watcher
+
 == TIPs
 
 == TODOs

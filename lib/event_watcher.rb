@@ -5,9 +5,9 @@ module EventWatcher
     def method_call_watcher(object_name, method_name, &block)
       watcher = Watcher.build :object_name => object_name, :method_name => method_name, :callback => block
       code = <<-CODE
-        alias :old_method :#{watcher.watched_method_name}
+        alias :original_#{watcher.watched_method_name} :#{watcher.watched_method_name}
         def #{watcher.watched_method_name}(*args)
-          result = old_method(*args)
+          result = :original_#{watcher.watched_method_name}(*args)
           Watcher.find("#{watcher.key}").trigger_callback(self, args, result) rescue nil
           result
         end
@@ -20,7 +20,7 @@ module EventWatcher
     def callback_watcher(class_name, callback_name, &block)
       watcher = Watcher.build :object_name => class_name, :method_name => callback_name, :callback => block
       watcher.klass.class_eval <<-CODE
-        after_create Proc.new {|resource| Watcher.find("#{watcher.key}").trigger_callback(resource) rescue nil }
+        #{callback_name} Proc.new {|resource| Watcher.find("#{watcher.key}").trigger_callback(resource) rescue nil }
       CODE
     end
 
