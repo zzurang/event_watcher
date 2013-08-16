@@ -4,7 +4,8 @@
 == DESCRIPTION
   Simple DSL for monitoring class_methods, instance_methods and hooks calling history 
 
-== USAGE
+
+```ruby
   class Subscriber < ActiveRecord::Base
     after_create :foo
   end
@@ -33,7 +34,7 @@
   #   after_create hook has been called !
   #   class method 'Subscriber.create' has been called
   #   instance method 'destroy' has been called on a Subscriber object
-
+```
 == INSTALL
   gem install event_watcher
 
