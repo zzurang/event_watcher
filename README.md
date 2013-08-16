@@ -1,8 +1,8 @@
-= EventWatcher
-  http://github.com/zzurang/event_watcher
+## EventWatcher
+http://github.com/zzurang/event_watcher
 
-== DESCRIPTION
-  Simple DSL for monitoring class_methods, instance_methods and hooks calling history 
+## DESCRIPTION
+Simple DSL for monitoring class_methods, instance_methods and hooks calling history 
 
 
 ```ruby
@@ -35,9 +35,9 @@
   #   class method 'Subscriber.create' has been called
   #   instance method 'destroy' has been called on a Subscriber object
 ```
-== INSTALL
+## INSTALL
   gem install event_watcher
 
-== TIPs
+## TIPs
 
-== TODOs
+## TODOs
