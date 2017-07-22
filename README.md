@@ -37,7 +37,3 @@ Simple DSL for monitoring class_methods, instance_methods and hooks calling hist
 ```
 ## INSTALL
   gem install event_watcher
-
-## TIPs
-
-## TODOs
